@@ -47,11 +47,13 @@ for s,j in enumerate(nev_var):
         j.append('')
     final_var.append(j)
   
-regex = r'(\+7|8).*?(\d{3}).*?(\d{3}).*?(\d{2}).*?(\d{2})\s*(\w*)'
-zmn = r"+7(\2)\3-\4-\5 \6"
+regex = r'(\+7|8).*?(\d{3}).*?(\d{3}).*?(\d{2}).*?(\d{2})[ ]?[ (]?(\w{3}.)?[ ]?(\d{4})?[) ]?'#
+zmn = r"+7(\2)\3-\4-\5 \6\7"
 zz=[]
 for d,g in enumerate(final_var):
+
     mes = re.sub(regex, zmn, str(g[-2]))
+    print(str(g[-2]),'___',mes)
     final_var[d][-2]=mes
 
 with open('phonebook.csv','w+', encoding='utf=8') as f:
